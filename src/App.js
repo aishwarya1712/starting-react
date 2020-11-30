@@ -3,7 +3,7 @@ import './App.css';
 // import person from './MOCK_DATA.json'
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import {Button} from '@material-ui/core'
-
+import AppAsClassComponent from './AppAsClassComponent'
 //functional component
 function App() {
 
@@ -18,9 +18,9 @@ function App() {
   // second argument: an array of values. eg= [firstName, selectedItem]. 
   // if these values change, you want the defined function to run (first arg)
   // if second arg is an empty array, the function runs ONCE when the component is loaded onto the page. 
-
+  // Similar to componentDidMount() of Class Component
   React.useEffect( ()=>{
-      fetch("http://localhost:3000/starting-react/MOCK_DATA.json")
+      fetch("/starting-react/MOCK_DATA.json")
       .then( (res)=> res.json())
       .then( (data)=> setPerson(data))
   }, [])
@@ -48,7 +48,7 @@ function App() {
   
   return (
     <div className="title">
-      <h1> Person Search </h1>
+      <h1> Person Search Using Functional Component</h1>
       <input value={firstName} 
       onChange={(evt) => setfirstName(evt.target.value)} type="text"/> {/* Updating value of hook when it's value changes in input box */}
       <table width="100%">
@@ -64,6 +64,9 @@ function App() {
        // this is another way of passing values 
        <h1> <PersonInfo {...selectedItem}/> </h1> // Spreading the selectedItem object, because the component itself takes spreaded values and not the whole object. 
      )}
+
+
+     <AppAsClassComponent/>
     </div>
   );
 }
