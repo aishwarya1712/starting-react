@@ -48,6 +48,7 @@ function App() {
   
   return (
     <div className="title">
+     
       <h1> Person Search Using Functional Component</h1>
       <input value={firstName} 
       onChange={(evt) => setfirstName(evt.target.value)} type="text"/> {/* Updating value of hook when it's value changes in input box */}

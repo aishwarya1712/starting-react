@@ -36,7 +36,8 @@ class AppAsClassComponent extends React.Component {
         this.state = {
             firstName: "",
             selectedItem: [],
-            person: null
+            person: null,
+            firstButtonShow: true
         }
     }
     
@@ -46,9 +47,23 @@ class AppAsClassComponent extends React.Component {
         .then( (res)=> res.json())
         .then( (data)=> this.setState({...this.state, person: data}))
     }
+
+    buttonChange(e, b1){
+      this.setState({
+        firstButtonShow: b1
+      })
+     
+    }
     // render function does not take any arguments
     render(){
         return (<div className="title">
+
+      <Button style={{background: this.state.firstButtonShow?"blue":"grey"}} onClick={(e)=>this.buttonChange(e, true)}> Price </Button>
+      <Button style={{background: !this.state.firstButtonShow?"blue":"grey"}} onClick={(e)=>this.buttonChange(e, false)}> Chart </Button>
+      {this.state.firstButtonShow? <div> Content 1 </div> : <div> Content 2 </div>}
+      {/* { this.state.firstButtonShow&& this.state.secondButtonShow? <div> Content 1 </div>: "" }
+      {this.state.secondButtonShow==true && this.state.firstButtonShow==false? <div> Content 2 </div> : ""} */}
+
       <h1> Person Search Using Class Component </h1>
       <input value={this.state.firstName} 
         onChange={(evt) => this.setState({
